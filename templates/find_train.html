@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find Train</title>
+</head>
+<body>
+  <h2>Enter Source and Destination</h2>
+  <div class = "container">
+      <form action = "findTrain" method="POST">{% csrf_token %}
+      <label for="source" class="station">Source</label>
+      <input name="source" type="text" id="source" class="form-control" placeholder="Source" required="" autofocus="">
+      <label for="destination" class="station">Destination</label>
+      <input type="text" id="destination" class="form-control" placeholder="Destination" required="">
+      <input type="submit" class="btn btn-primary" value="Submit">
+      </form>
+  </div>
+
+</body>
+</html>
