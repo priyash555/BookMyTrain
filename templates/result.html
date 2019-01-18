@@ -9,7 +9,7 @@
 <body>
   <h2>Enter Source and Destination</h2>
   <div class = "container">
-      <form action = "result/" method="POST">{% csrf_token %}
+      <form action = "/find_train/result/" method="POST">{% csrf_token %}
       <label for="source" class="station">Source</label>
       <input name="source" type="text" id="source" class="form-control" placeholder="Source" required="" autofocus="">
       <label for="destination" class="station">Destination</label>
@@ -17,6 +17,25 @@
       <input type="submit" class="btn btn-primary" value="Submit">
       </form>
   </div>
+
+<table>
+    <tr>
+        <th>Train No</th>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
+
+        <!--<th>Field N</th>-->
+    </tr>
+    {% for item in query_results %}
+    <tr>
+        <td>{{ item.train_no_id }}</td>
+        <td>{{ item.departure_time }}</td>
+        <td>{{ item.dst.arrival_time }}</td>
+        <!--<td>{{ item.fieldN }}</td>-->
+    </tr>
+    {% endfor %}
+</table>
+
 
 </body>
 </html>

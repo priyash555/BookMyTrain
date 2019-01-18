@@ -33,8 +33,8 @@ class Train(models.Model):
 class Station(models.Model):
     station_name = models.CharField(max_length=30)
     train_no = models.ForeignKey( Train, on_delete=models.CASCADE)
-    arival_time = models.CharField(max_length=30)
-    depetrure_time = models.CharField(max_length=30)
+    arrival_time = models.CharField(max_length=30)
+    departure_time = models.CharField(max_length=30)
     platform = models.IntegerField()
 
     def __unicode__(self):

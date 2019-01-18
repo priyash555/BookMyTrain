@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from . import forms
+from .models import Station
 
 def find_train(request):
     return render(request, 'find_train.html')
@@ -12,9 +13,12 @@ def user(request):
     return render(request, 'first_app/userDashboard.html')
 
 def result(request):
-    source = request.POST["source"]
-    destination = request.POST["destination"]
-    return render(request, 'find_train.html')
+    source = request.POST['source']
+    destination = request.POST['destination']
+    # query_results = dict(Station.objects.all())
+    query_results = Station.objects.raw('select * from first_app_station as src cross join first_app_station as dst WHERE src.station_name = %s and dst.station_name = %s and src.train_no_id = dst.train_no_id and src.departure_time < dst.arrival_time;', (source, destination))
+    context = {'query_results' : query_results}
+    return render(request, 'result.html', context)
 
 def Register_view(request):
     form = forms.Register()
