@@ -20,19 +20,19 @@ class Register(models.Model):
 class Train(models.Model):
     train_no = models.IntegerField(primary_key=True)
     train_name = models.CharField(max_length=30)
-    destination = models.CharField(max_length=30)
     source = models.CharField(max_length=30)
+    destination = models.CharField(max_length=30)
 
     def __unicode__(self):
-        return self.train_name
+        return (str(self.train_no) + '\t' + self.train_name)
 
     def __str__(self):
-        return self.train_name
+        return (str(self.train_no) + '\t' + self.train_name)
 
 
 class Station(models.Model):
     station_name = models.CharField(max_length=30)
-    train_no = models.ForeignKey( Train, on_delete=models.CASCADE)
+    train = models.ForeignKey(Train, on_delete=models.CASCADE)
     arrival_time = models.CharField(max_length=30)
     departure_time = models.CharField(max_length=30)
     platform = models.IntegerField()

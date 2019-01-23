@@ -15,8 +15,10 @@ def user(request):
 def result(request):
     source = request.POST['source']
     destination = request.POST['destination']
-    # query_results = dict(Station.objects.all())
-    query_results = Station.objects.raw('select * from first_app_station as src cross join first_app_station as dst WHERE src.station_name = %s and dst.station_name = %s and src.train_no_id = dst.train_no_id and src.departure_time < dst.arrival_time;', (source, destination))
+    # query = 'select src.id, src.train_id, train_id__train_name, src.departure_time as departure_time, dst.arrival_time as arrival_time from first_app_station as src cross join first_app_station as dst WHERE src.station_name = %s and dst.station_name = %s and src.train_id = dst.train_id and src.departure_time < dst.arrival_time;'
+    query = "SELECT * FROM first_app_station"
+    query_results = list(Station.objects.all().values('id', 'train_id', 'train_id__train_name'))
+    # query_results = Station.objects.raw(query, (source, destination))
     context = {'query_results' : query_results}
     return render(request, 'result.html', context)
 

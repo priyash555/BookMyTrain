@@ -3,7 +3,7 @@ from .models import Register, Train, Ticket, Station, Passenger
 # Register your models here.
 
 class StationEntry(admin.ModelAdmin):
-    list_display = ("id", "station_name", "train_no", "arrival_time", "departure_time", "platform")
+    list_display = ("id", "station_name", "train", "arrival_time", "departure_time", "platform")
 
 class TrainEntry(admin.ModelAdmin):
     list_display = ("train_no", "train_name", "source", "destination")
