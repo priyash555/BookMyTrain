@@ -23,26 +23,23 @@
 
 <table>
     <tr>
-        <th>Train</th>
-        <th>Train</th>
-        <th>Departure Time</th>
-        <th>Arrival Time</th>
-
+        <th>Train No.</th>
+        <th>Train Name</th>
+        <th>Departure</th>
+        <th>Arrival</th>
         <!--<th>Field N</th>-->
     </tr>
     {% for item in query_results %}
     <tr>
         <td>{{ item.train_id }}</td>
-        <td>{{ item.train_id__train_name }}</td>
+        <td>{{ item.train_name }}</td>
         <td>{{ item.departure_time }}</td>
         <td>{{ item.arrival_time }}</td>
-        <!--<td>{{ item.fieldN }}</td>-->
     </tr>
     {% endfor %}
 </table>
 
 
-{% render_table query_results %}
 
 </body>
 </html>
